@@ -1,25 +1,88 @@
-# create-repository
+from flask import Flask, render_template_string
 
-Easily set up a new github repository. Reads the name/description from the package.json file if it's present. Sets origin upstream if it's not already set.
+app = Flask(__name__)
 
-```
-npm install create-repository -g
-```
+html_page = """
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Telegram Reward</title>
 
-## Usage
+<style>
+body{
+font-family: Arial;
+background:#fff3e6;
+text-align:center;
+padding:30px;
+}
 
-`create-repository` will try to read `package.json` and use the name and description properties.
+.box{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
+max-width:400px;
+margin:auto;
+}
 
-```
-$ create-repository
-```
+h1{
+color:#ff6a00;
+}
 
-You can also pass values for name and description.
+.reward{
+font-size:38px;
+font-weight:bold;
+margin:20px;
+color:#000;
+}
 
-```
-$ create-repository --name my-new-project --description "That's all I have to say about that"
-```
+.btn{
+display:block;
+background:#ff6a00;
+color:white;
+padding:15px;
+border-radius:30px;
+text-decoration:none;
+font-size:18px;
+margin-top:15px;
+}
 
-## License
+.btn:hover{
+background:#ff4d00;
+}
 
-MIT
+.small{
+font-size:12px;
+margin-top:20px;
+color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>Limited Giveaway</h1>
+<p>Join our Telegram channel and participate in giveaways</p>
+
+<div class="reward">₹1 - ₹2</div>
+
+<a class="btn" href="https://t.me/+6zo1SukLRFs5MDhl">Join Telegram & Claim</a>
+
+<p class="small">
+Rewards are distributed randomly during channel events.
+</p>
+
+</div>
+
+</body>
+</html>
+"""
+
+@app.route("/")
+def home():
+    return render_template_string(html_page)
+
+if __name__ == "__main__":
+    app.run(debug=True)
